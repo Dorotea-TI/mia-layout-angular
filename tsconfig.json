@@ -2,6 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@agencycoda/mia-layout": [
+        "dist/agencycoda/mia-layout/agencycoda-mia-layout",
+        "dist/agencycoda/mia-layout"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
