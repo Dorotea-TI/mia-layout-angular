@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+/** MIA Libraries */
+import { MiaLayoutModule } from 'projects/agencycoda/mia-layout/src/public-api';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MiaLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

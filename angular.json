@@ -8,6 +8,11 @@
   "projects": {
     "@agencycoda/mia-layout": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/agencycoda/mia-layout",
       "sourceRoot": "projects/agencycoda/mia-layout/src",
       "prefix": "lib",

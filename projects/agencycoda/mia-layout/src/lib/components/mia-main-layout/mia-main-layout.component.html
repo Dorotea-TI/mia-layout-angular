@@ -1,0 +1,27 @@
+<div class="main-layout">
+    <!-- <div class="background_mobile animated" [ngClass]="{'background_mobile_active': isSidebarOpen}"></div> -->
+    <div class="sidebar animated" [ngClass]="{'sidebar_open': isSidebarOpen}">
+        <a fxHide.lt-md [routerLink]="[config.mainRoute]" class="logo">
+            <img class="" [src]="config.logoImage" [alt]="config.title" />
+        </a>
+        <mat-divider fxHide.lt-md></mat-divider>
+        <mia-list [isOpen]="isSidebarOpen" [items]="config.itemsMenu"(clickItem)="onClickItem($event)"></mia-list>
+        
+        <mat-divider fxHide.xs style="margin-top: auto !important;"></mat-divider>
+        <a *ngIf="currentUser" mat-list-item [matMenuTriggerFor]="menu" class="user" fxHide.lt-md
+            (click)="onClickItem()">
+            <div class="image"><img [src]="currentUser?.photo" onerror="this.src='/assets/img/user-avatar-empty.svg';"></div>
+            {{ currentUser?.firstname }} {{ currentUser?.lastname }}
+        </a>
+
+    </div>
+  
+    <div class="container_pages animated" [ngClass]="{'container_pages_open': isSidebarOpen}">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+<mat-menu #menu>
+      <a [routerLink]="['/profile/my-profile']" mat-menu-item><mat-icon>account_circle</mat-icon> My Profile </a>
+      <button mat-menu-item><mat-icon>logout</mat-icon> Logout</button>
+</mat-menu>

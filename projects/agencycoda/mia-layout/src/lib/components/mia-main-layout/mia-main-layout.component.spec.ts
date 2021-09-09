@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MiaLayoutComponent } from './mia-layout.component';
+import { MiaMainLayoutComponent } from './mia-main-layout.component';
 
-describe('MiaLayoutComponent', () => {
-  let component: MiaLayoutComponent;
-  let fixture: ComponentFixture<MiaLayoutComponent>;
+describe('MiaMainLayoutComponent', () => {
+  let component: MiaMainLayoutComponent;
+  let fixture: ComponentFixture<MiaMainLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MiaLayoutComponent ]
+      declarations: [ MiaMainLayoutComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MiaLayoutComponent);
+    fixture = TestBed.createComponent(MiaMainLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

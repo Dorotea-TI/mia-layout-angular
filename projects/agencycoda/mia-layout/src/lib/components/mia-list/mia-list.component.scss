@@ -1,0 +1,45 @@
+mat-action-list{
+    padding: 0 1em;
+    padding-top: 0;
+    margin-top: 1em;
+    flex-direction: column;
+    display: flex;
+    height: calc(100vh - 110px);
+    &::ng-deep .mat-list-item-content{ width: 100%; }
+        button,a{
+            display: flex;
+            align-items: center;
+            text-transform: initial;
+            letter-spacing: 0.25px;
+            text-decoration: none;
+            width: 100%;
+            color: rgba(0, 0, 0, 0.54) !important;
+            white-space: nowrap;
+            font-weight: 700;
+            position: relative;
+            border-radius: 0.5em;
+            svg {
+                width: 24px;
+                min-width: 24px;
+                margin-right: 24px;
+                path { fill: rgba(0, 0, 0, 0.54); }
+            }
+            mat-icon{
+                width: 24px;
+                min-width: 24px;
+                margin-right: 24px;
+                color: rgba(0, 0, 0, 0.54);
+            }
+        }
+        .router-link-active{
+            color: #354DC9 !important;
+            background-color: rgba($color: #354DC9, $alpha: 0.1) !important;
+            svg { path { fill: #354DC9 !important; } }
+            mat-icon { color: #354DC9 !important; }
+        &:hover{
+            color: #354DC9 !important;
+            svg { path { fill: #354DC9; } }
+            mat-icon { color: #354DC9; }
+        }
+    }
+}
