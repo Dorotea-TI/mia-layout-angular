@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MiaMainLayoutComponent, MiaMainLayoutConfig } from 'projects/agencycoda/mia-layout/src/public-api';
+import { VideosComponent } from './pages/videos/videos.component';
 
 const routes: Routes = [
   {
@@ -15,11 +16,16 @@ const routes: Routes = [
           title: 'Dashboard',
           route: '/dashboard',
           icon: 'dashboard'
+        },
+        {
+          title: 'Videos',
+          route: '/videos',
+          icon: 'dashboard'
         }
       ]
     } as MiaMainLayoutConfig,
     children: [
-      
+      { path: 'videos', component: VideosComponent }
     ]
   },
 ];

@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /** MIA Libraries */
 import { MiaLayoutModule } from 'projects/agencycoda/mia-layout/src/public-api';
+import { VideosComponent } from './pages/videos/videos.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VideosComponent
   ],
   imports: [
     BrowserModule,

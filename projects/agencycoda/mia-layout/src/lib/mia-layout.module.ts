@@ -8,23 +8,36 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 /** MIA Libraries */
 import { MiaAuthModule } from '@agencycoda/mia-auth';
+import { MiaTableModule } from '@agencycoda/mia-table';
+import { MiaLoadingModule } from '@agencycoda/mia-loading';
+import { MiaCoreModule } from '@agencycoda/mia-core';
 
 /** Components */
 import { MiaMainLayoutComponent } from './components/mia-main-layout/mia-main-layout.component';
 import { MiaListComponent } from './components/mia-list/mia-list.component';
+
+/** Pages */
+import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.component';
+
 
 
 
 
 @NgModule({
   declarations: [
+    // Components
     MiaMainLayoutComponent,
-    MiaListComponent
+    MiaListComponent,
+
+    // Pages
+    MiaPageCrudComponent
   ],
   imports: [
+    // Angular Core
     BrowserModule,
     RouterModule,
 
@@ -34,13 +47,21 @@ import { MiaListComponent } from './components/mia-list/mia-list.component';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    FlexLayoutModule,
 
     // Mia Libraries
-    MiaAuthModule
+    MiaCoreModule,
+    MiaAuthModule,
+    MiaLoadingModule,
+    MiaTableModule
   ],
   exports: [
+    // Components
     MiaMainLayoutComponent,
-    MiaListComponent
+    MiaListComponent,
+
+    // Pages
+    MiaPageCrudComponent
   ]
 })
 export class MiaLayoutModule { }
