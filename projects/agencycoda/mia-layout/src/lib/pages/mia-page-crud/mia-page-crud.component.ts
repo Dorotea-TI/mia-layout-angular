@@ -1,11 +1,13 @@
 import { MiaConfirmModalComponent, MiaConfirmModalConfig, truly } from '@agencycoda/mia-core';
 import { MiaTableComponent, MiaTableConfig } from '@agencycoda/mia-table';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 export class MiaPageCrudConfig {
   title = '';
   tableConfig = new MiaTableConfig();
+  hasSearch = false;
 
   buttons: Array<{ key: string, title: string, icon?: string, classes?: string }> = [];
 }
@@ -21,6 +23,8 @@ export class MiaPageCrudComponent implements OnInit {
 
   @Input() config!: MiaPageCrudConfig;
   @Output() action = new EventEmitter<{key: string; item: any;}>();
+
+  inputSearch = new FormControl('');
 
   constructor(
     protected dialog: MatDialog
@@ -56,5 +60,7 @@ export class MiaPageCrudComponent implements OnInit {
     this.config.tableConfig.onClick.subscribe(result => {
       this.action.emit(result);
     });
+
+    this.inputSearch.valueChanges.subscribe(text => this.action.emit({ key: 'search', item: text }));
   }
 }

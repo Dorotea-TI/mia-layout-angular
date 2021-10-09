@@ -1,6 +1,8 @@
+/** Angular */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 /** Angular Material */
 import { MatDividerModule } from '@angular/material/divider';
@@ -9,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 /** MIA Libraries */
 import { MiaAuthModule } from '@agencycoda/mia-auth';
@@ -40,6 +44,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     // Angular Core
     BrowserModule,
     RouterModule,
+    ReactiveFormsModule,
 
     // Angular Material
     MatDividerModule,
@@ -47,6 +52,8 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatInputModule,
+    MatFormFieldModule,
     FlexLayoutModule,
 
     // Mia Libraries

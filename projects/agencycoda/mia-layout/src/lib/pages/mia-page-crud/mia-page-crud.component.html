@@ -16,6 +16,13 @@
         </div>
 
         <div class="toolbar-two d-flex">
+
+            <mat-form-field>
+                <mat-icon matPrefix>search</mat-icon>
+                <mat-label>Search</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="inputSearch" />
+            </mat-form-field>
+
             <!--<app-search-field></app-search-field>
             <app-filters-field></app-filters-field>-->
         </div>

@@ -18,10 +18,16 @@ export class VideosComponent implements OnInit {
     this.loadConfig();
   }
 
+  onSearch(text: string) {
+    console.log('Searching: ' + text);
+  }
+
   onAction(action: {key: string; item: any;}) {
     if(action.key == 'add'){
       alert('Click ADD');
-    } 
+    } else if (action.key == 'search') {
+      this.onSearch(action.item);
+    }
   }
 
   loadTableConfig() {
