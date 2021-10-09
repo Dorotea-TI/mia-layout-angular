@@ -1,6 +1,6 @@
 /** Angular */
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -31,6 +31,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
 
 
 
+
 @NgModule({
   declarations: [
     // Components
@@ -42,7 +43,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
   ],
   imports: [
     // Angular Core
-    BrowserModule,
+    CommonModule,
     RouterModule,
     ReactiveFormsModule,
 
