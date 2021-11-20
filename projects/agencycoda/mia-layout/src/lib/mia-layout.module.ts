@@ -19,6 +19,7 @@ import { MiaAuthModule } from '@agencycoda/mia-auth';
 import { MiaTableModule } from '@agencycoda/mia-table';
 import { MiaLoadingModule } from '@agencycoda/mia-loading';
 import { MiaCoreModule } from '@agencycoda/mia-core';
+import { MiaFormModule } from '@agencycoda/mia-form';
 
 /** Components */
 import { MiaMainLayoutComponent } from './components/mia-main-layout/mia-main-layout.component';
@@ -26,6 +27,7 @@ import { MiaListComponent } from './components/mia-list/mia-list.component';
 
 /** Pages */
 import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.component';
+
 
 
 
@@ -61,7 +63,8 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     MiaCoreModule,
     MiaAuthModule,
     MiaLoadingModule,
-    MiaTableModule
+    MiaTableModule,
+    MiaFormModule
   ],
   exports: [
     // Components

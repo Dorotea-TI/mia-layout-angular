@@ -1,4 +1,5 @@
 import { MiaConfirmModalComponent, MiaConfirmModalConfig, truly } from '@agencycoda/mia-core';
+import { MiaFormModalComponent, MiaFormModalConfig } from '@agencycoda/mia-form';
 import { MiaTableComponent, MiaTableConfig } from '@agencycoda/mia-table';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -10,6 +11,8 @@ export class MiaPageCrudConfig {
   hasSearch = false;
 
   buttons: Array<{ key: string, title: string, icon?: string, classes?: string }> = [];
+
+  formConfig = new MiaFormModalConfig();
 }
 
 @Component({
@@ -32,6 +35,19 @@ export class MiaPageCrudComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadConfig();
+  }
+
+  openForm(item: any) {
+    this.config.formConfig.item = item;
+    return this.openFormCustom(this.config.formConfig);
+  }
+
+  openFormCustom(config: MiaFormModalConfig) {
+    return this.dialog.open(MiaFormModalComponent, {
+      width: '500px',
+      panelClass: 'modal-full-width-mobile',
+      data: config
+    }).afterClosed();
   }
 
   onClickButton(key: string) {

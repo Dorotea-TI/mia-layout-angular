@@ -1,13 +1,14 @@
 {
   "name": "@agencycoda/mia-layout",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "peerDependencies": {
     "@angular/common": ">=12.0.0",
     "@angular/core": ">=12.0.0",
     "@angular/cdk": ">=12.0.0",
     "@agencycoda/mia-core": ">=11.0.30",
     "@agencycoda/mia-auth": ">=11.0.30",
-    "@agencycoda/mia-table": ">=11.0.30"
+    "@agencycoda/mia-table": ">=11.0.30",
+    "@agencycoda/mia-form": ">=11.0.64"
   },
   "dependencies": {
     "tslib": "^2.3.0"
