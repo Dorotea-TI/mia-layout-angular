@@ -22,7 +22,7 @@ export class MiaPageCrudConfig {
 })
 export class MiaPageCrudComponent implements OnInit {
 
-  @ViewChild('tableCom') tableCom!: MiaTableComponent;
+  @ViewChild('tableComp') tableComp!: MiaTableComponent;
 
   @Input() config!: MiaPageCrudConfig;
   @Output() action = new EventEmitter<{key: string; item: any;}>();
