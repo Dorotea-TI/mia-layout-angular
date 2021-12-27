@@ -23,5 +23,5 @@
   
 <mat-menu #menu>
       <a [routerLink]="['/profile/my-profile']" mat-menu-item><mat-icon>account_circle</mat-icon> My Profile </a>
-      <button mat-menu-item><mat-icon>logout</mat-icon> Logout</button>
+      <button mat-menu-item (click)="onClickLogout()"><mat-icon>logout</mat-icon> Logout</button>
 </mat-menu>

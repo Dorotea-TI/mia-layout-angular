@@ -60,4 +60,8 @@ export class MiaMainLayoutComponent implements OnInit {
         }
     });
   }
+
+  onClickLogout() {
+    this.authService.logOut();
+  }
 }

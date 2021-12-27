@@ -69,7 +69,7 @@ export class MiaPageCrudComponent implements OnInit {
   }
 
   loadItems() {
-    this.tableCom.loadItems();
+    this.tableComp.loadItems();
   }
 
   loadConfig() {
