@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MiaItemList } from '../mia-list/mia-list.component';
 import { MiaAuthService, MiaUser } from '@agencycoda/mia-auth';
 import { nil } from '@agencycoda/mia-core';
@@ -26,7 +26,8 @@ export class MiaMainLayoutComponent implements OnInit {
   constructor(
     protected breakpointObserver: BreakpointObserver,
     protected route: ActivatedRoute,
-    protected authService: MiaAuthService
+    protected authService: MiaAuthService,
+    protected navigator: Router
   ) { }
 
   ngOnInit(): void {
@@ -63,5 +64,6 @@ export class MiaMainLayoutComponent implements OnInit {
 
   onClickLogout() {
     this.authService.logOut();
+    this.navigator.navigateByUrl(this.config.mainRoute);
   }
 }
