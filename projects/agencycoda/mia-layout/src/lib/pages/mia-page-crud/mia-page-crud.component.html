@@ -1,37 +1,31 @@
-<div fxLayout="row">
+<div class="container-page intro-component-animation">
+    <div class="topbar">
+        <div class="breadcrumb"></div>
+        <button *ngIf="hasBackButton" mat-icon-button [routerLink]="['/routePath']" class="btn-back" matTooltip="Back"><mat-icon>arrow_back</mat-icon></button>
+        <h1><b> {{ config.title }} </b></h1>
 
-    <div fxFlex="100%" class="clients container-page intro-component-animation">
-        <div class="topbar">
-            <div>
-                <div class="breadcrumb">
-                    <h1 class="title-header">{{ config.title }}</h1>
-                </div>
-            </div>
-            <div style="flex: 1 1 auto;"></div>
-        
-            <ng-container *ngFor="let button of config.buttons">
-                <button fxHide.lt-md mat-flat-button class="button-flat button-primary {{ button.classes }}" (click)="onClickButton(button.key)"> {{ button.title }} </button>
-                <button *ngIf="button.icon" fxHide fxShow.lt-md mat-icon-button class="button-icon button-primary" (click)="onClickButton(button.key)"><mat-icon>{{ button.icon }}</mat-icon></button>
-            </ng-container>
-        </div>
-
-        <div class="toolbar-two d-flex">
-
-            <mat-form-field>
-                <mat-icon matPrefix>search</mat-icon>
-                <mat-label>Search</mat-label>
-                <input matInput type="text" placeholder="" [formControl]="inputSearch" />
-            </mat-form-field>
-
-            <!--<app-search-field></app-search-field>
-            <app-filters-field></app-filters-field>-->
-        </div>
-
-        <div>
-            <div class="container-table">
-                <mia-table #tableComp [config]="config.tableConfig"></mia-table>
-            </div>
-        </div>
+        <ng-container *ngFor="let button of config.buttons">
+            <button mat-flat-button class="btn-add {{ button.classes }}" color="primary" (click)="onClickButton(button.key)">
+              <mat-icon> {{ button.icon }} </mat-icon>
+              <span> {{ button.title }} </span>
+            </button>
+        </ng-container>
     </div>
 
+    <div class="toolbar-two d-flex">
+
+        <mat-form-field appearance="outline">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" placeholder="Search..." [formControl]="inputSearch" />
+        </mat-form-field>
+
+        <!--<app-search-field></app-search-field>
+        <app-filters-field></app-filters-field>-->
+    </div>
+
+    <div>
+        <div class="container-table">
+            <mia-table #tableComp [config]="config.tableConfig"></mia-table>
+        </div>
+    </div>
 </div>

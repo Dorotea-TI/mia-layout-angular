@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+/* import { FlexLayoutModule } from '@angular/flex-layout'; */
 
 /** Angular Material */
 import { MatDividerModule } from '@angular/material/divider';
@@ -10,9 +11,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 /** MIA Libraries */
 import { MiaAuthModule } from '@agencycoda/mia-auth';
@@ -48,6 +49,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    /* FlexLayoutModule, */
 
     // Angular Material
     MatDividerModule,
@@ -57,7 +59,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     MatMenuModule,
     MatInputModule,
     MatFormFieldModule,
-    FlexLayoutModule,
+    MatTooltipModule,
 
     // Mia Libraries
     MiaCoreModule,
