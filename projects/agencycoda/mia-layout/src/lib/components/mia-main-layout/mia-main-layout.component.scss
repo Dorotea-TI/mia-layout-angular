@@ -1,133 +1,226 @@
-@mixin lt-md { @media (max-width: 959px)  { @content; } }
+@mixin lt-md {
+  @media (max-width: 959px) {
+    @content;
+  }
+}
+@mixin xs {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (min-width: 600px) and (max-width: 959px) {
+    @content;
+  }
+}
 
 .main-layout {
+  display: flex;
+  align-items: flex-start;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  @include lt-md {
+    flex-direction: column;
+  }
+
+  .sidebar {
     display: flex;
-    align-items: flex-start;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-
-    .sidebar{
-        display: inline-block;
+    flex-direction: column;
+    background-color: #f6f8fc;
+    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: inset -1px 0px 0px 0px rgba($color: #333450, $alpha: 0.1);
+    z-index: 4;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    @include lt-md {
+      flex-direction: row;
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      height: 54px;
+      min-height: 54px;
+      max-height: 54px;
+      align-items: center;
+      padding: 0 1em;
+      box-sizing: border-box;
+      mat-divider {
+        display: none;
+      }
+    }
+    @include sm{
+      padding: 0 2em;
+    }
+    mia-list {
+      @include lt-md {
+        position: fixed;
+        top: 54px;
+        left: 0;
+        width: 100%;
         background-color: white;
-        width: 240px;
-        min-width: 240px;
-        max-width: 240px;
-        height: 100vh;
-        overflow-x: hidden;
-        overflow-y: auto;
-        box-shadow: inset -1px 0px 0px 0px rgba($color: #333450, $alpha: 0.1);
-        &::-webkit-scrollbar { display: none; }
-        @include lt-md{
-            width: 0;
-            min-width: 0;
-            max-width: 0;
-            z-index: 999;
-            position: fixed;
-            left: 0;
-            top: 56px;
+        z-index: 20;
+        box-shadow: 0 6px 20px 0 rgba($color: #000000, $alpha: 0.1);
+        box-sizing: border-box;
+        padding: 0;
+        height: 0;
+        transition: all 0.3s ease;
+        pointer-events: none;
+        opacity: 0;
+        overflow: hidden;
+        &::ng-deep mat-action-list {
+          margin: 0;
         }
-        .logo{
-            margin-top: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            img{
-                width: 130px;
-            }
-            .icon{
-                width: 32px;
-                display: block;
-                margin: auto;
-            }
-        }
+      }
     }
-
-    .user{
-        color: rgba(255, 255, 255, 0.54);
-        white-space: nowrap;
-        &:hover{
-            color: rgba(255, 255, 255, 1);
-        }
-        .image{
-            min-width: 40px; width: 40px; height: 40px; border-radius: 40px;
-            overflow: hidden;
-            margin-right: 16px;
-            img { width: 100%; height: 100%; object-fit: cover; }
-        }
+    .btn-menu{
+      display: none;
+      @include lt-md{
+        display: block;
+      }
     }
-
-    .sidebar_open{
-        width: 240px;
-        min-width: 240px;
-        max-width: 240px;
-        @include lt-md {
-            width: 100%;
-            min-width: 100%;
-            max-width: 100%;
-        }
+    .logo {
+      height: 50px;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include lt-md {
+        margin: auto;
+        height: 36px;
+      }
+      img {
+        height: 100%;
+      }
+      .icon {
+        width: 32px;
+        display: block;
+        margin: auto;
+      }
     }
-
-    .container_pages {
-        display: inline-block;
-        width: calc(100% - 240px);
-        min-width: calc(100% - 240px);
-        max-width: calc(100% - 240px);
-        background-color: #F6F8FC;
-        height: 100vh;
-        overflow-y: auto;
-        overflow-x: hidden;
-        @include lt-md {
-            width: 100% !important;
-            min-width: 100% !important;
-            max-width: 100% !important;
-        }
-    }
-
-    .container_pages_open {
-        width: calc(100% - 240px);
-        min-width: calc(100% - 240px);
-        max-width: calc(100% - 240px);
-        @include lt-md {
-            width: 100% !important;
-            min-width: 100% !important;
-            max-width: 100% !important;
-        }
-    }
-
-    .background_mobile {
-        @include lt-md {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.87);
-            z-index: -1;
-            opacity: 0;
-        }
-    }
-
-    .background_mobile_active {
-        @include lt-md {
-            opacity: 1;
-            z-index: 8;
-        }
-    }
-
-    .toolbar__mobile{
-        background-color: white;
-        border-bottom: 1px solid #d8dce4;
+    .btn-user {
+      color: rgba(255, 255, 255, 0.54);
+      white-space: nowrap;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      margin: 1em;
+      width: calc(100% - 2em);
+      padding: 0.5em 1em;
+      box-sizing: border-box;
+      @include lt-md {
+        width: 40px;
+        min-width: 40px;
+        max-width: 40px;
+        height: 40px;
+        min-height: 40px;
+        max-height: 40px;
+        margin: 0;
+        padding: 0;
         display: flex;
         align-items: center;
-        padding: 0.5em 1em;
-        .logo {
-            margin: auto;
-            width: 8em;
-            position: relative;
-            top: 3px;
-            img { width: 100%; }
+        justify-content: center;
+      }
+
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
+      .image {
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
+        border-radius: 32px;
+        overflow: hidden;
+        margin-right: 16px;
+        @include lt-md {
+          margin-right: 0;
         }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
     }
+  }
+
+  .sidebar_open {
+    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
+    @include lt-md {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+    mia-list {
+      height: auto;
+      padding: 1em 0;
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+
+  .container_pages {
+    display: inline-block;
+    width: calc(100% - 240px);
+    min-width: calc(100% - 240px);
+    max-width: calc(100% - 240px);
+    background-color: white;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 3em 5em;
+    @include lt-md {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      padding: 2em 1em;
+    }
+    @include sm{
+      padding: 2em;
+    }
+  }
+
+  .container_pages_open {
+    width: calc(100% - 240px);
+    min-width: calc(100% - 240px);
+    max-width: calc(100% - 240px);
+    @include lt-md {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+}
+
+.background {
+  display: none;
+  @include lt-md {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.75);
+    opacity: 0;
+    z-index: 3;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+}
+
+.background-active {
+  @include lt-md {
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+    pointer-events: all;
+  }
 }

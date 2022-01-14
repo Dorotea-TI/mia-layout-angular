@@ -9,9 +9,7 @@ export class MiaPageCrudConfig {
   title = '';
   tableConfig = new MiaTableConfig();
   hasSearch = false;
-
   buttons: Array<{ key: string, title: string, icon?: string, classes?: string }> = [];
-
   formConfig = new MiaFormModalConfig();
 }
 
@@ -27,6 +25,7 @@ export class MiaPageCrudComponent implements OnInit {
   @Input() config!: MiaPageCrudConfig;
   @Output() action = new EventEmitter<{key: string; item: any;}>();
 
+  @Input() hasBackButton = false;
   inputSearch = new FormControl('');
 
   constructor(
