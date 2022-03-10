@@ -1,6 +1,14 @@
 <mat-action-list>
-    <a *ngFor="let item of items" mat-list-item [routerLink]="item.route" routerLinkActive="router-link-active" (click)="onClick(item)">
-        <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
-        <span *ngIf="isOpen"> {{ item.title }} </span>
-    </a>
+    <ng-container *ngFor="let item of items">
+        <a *ngIf="item.route" mat-list-item [routerLink]="item.route" routerLinkActive="router-link-active" (click)="onClick(item)">
+            <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
+            <span *ngIf="isOpen"> {{ item.title }} </span>
+        </a>
+        <a *ngIf="item.action" mat-list-item (click)="onClick(item)">
+            <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
+            <span *ngIf="isOpen"> {{ item.title }} </span>
+        </a>
+    </ng-container>
+
+    
 </mat-action-list>

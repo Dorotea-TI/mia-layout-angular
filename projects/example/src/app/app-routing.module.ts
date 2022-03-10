@@ -22,6 +22,18 @@ const routes: Routes = [
           route: '/videos',
           icon: 'dashboard'
         }
+      ],
+      userMenu: [
+        {
+          title: 'My Profile',
+          route: 'my-profile',
+          icon: 'account_circle'
+        },
+        {
+          title: 'Logout',
+          action: 'logout',
+          icon: 'logout'
+        }
       ]
     } as MiaMainLayoutConfig,
     children: [

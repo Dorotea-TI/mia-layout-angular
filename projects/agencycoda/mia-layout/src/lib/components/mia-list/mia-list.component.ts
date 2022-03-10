@@ -2,8 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export class MiaItemList {
   title: string = '';
-  route: string = '';
+  route?: string = '';
   icon?: string;
+  action?: string = '';
 }
 
 @Component({

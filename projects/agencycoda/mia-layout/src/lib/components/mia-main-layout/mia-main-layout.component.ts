@@ -4,12 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MiaItemList } from '../mia-list/mia-list.component';
 import { MiaAuthService, MiaUser } from '@agencycoda/mia-auth';
 import { nil } from '@agencycoda/mia-core';
+import { UserMenuService } from '../../services/user_menu.service';
 
 export class MiaMainLayoutConfig {
   title?: string;
   logoImage?: string;
   mainRoute: string = '/';
   itemsMenu?: Array<MiaItemList> = [];
+  userMenu?: Array<MiaItemList> = [];
 }
 
 @Component({
@@ -27,7 +29,8 @@ export class MiaMainLayoutComponent implements OnInit {
     protected breakpointObserver: BreakpointObserver,
     protected route: ActivatedRoute,
     protected authService: MiaAuthService,
-    protected navigator: Router
+    protected navigator: Router,
+    protected userMenuService: UserMenuService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +43,10 @@ export class MiaMainLayoutComponent implements OnInit {
     if (this.breakpointObserver.isMatched('(max-width: 959px)')) {
       this.isSidebarOpen = false;
     }
+  }
+
+  onClickItemInUserMenu(item?: MiaItemList) {
+    this.userMenuService.onClick.next(item);
   }
 
   loadUser() {

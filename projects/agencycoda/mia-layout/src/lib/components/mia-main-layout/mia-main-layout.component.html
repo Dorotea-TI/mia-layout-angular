@@ -13,7 +13,7 @@
 
     <mat-divider></mat-divider>
 
-    <mia-list [isOpen]="isSidebarOpen" [items]="config.itemsMenu"(clickItem)="onClickItem($event)"></mia-list>
+    <mia-list [isOpen]="isSidebarOpen" [items]="config.itemsMenu" (clickItem)="onClickItem($event)"></mia-list>
 
     <mat-divider style="margin-top: auto !important;"></mat-divider>
 
@@ -29,6 +29,5 @@
 </div>
 
 <mat-menu #menu>
-  <a [routerLink]="['/profile/my-profile']" mat-menu-item><mat-icon>account_circle</mat-icon> My Profile </a>
-  <button mat-menu-item (click)="onClickLogout()"><mat-icon>logout</mat-icon> Logout</button>
+  <mia-list class="user-item-list" [items]="config.userMenu" (clickItem)="onClickItemInUserMenu($event)"></mia-list>
 </mat-menu>
