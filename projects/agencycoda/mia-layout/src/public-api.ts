@@ -3,6 +3,11 @@
  */
 
 /**
+ * Services
+ */
+ export * from './lib/services/user_menu.service';
+
+/**
  * Components
  */
  export * from './lib/components/mia-main-layout/mia-main-layout.component';
