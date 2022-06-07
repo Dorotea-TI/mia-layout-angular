@@ -59,12 +59,21 @@ export class MiaPageCrudComponent implements OnInit {
     });
   }
 
-  onClickRemove(item: any) {
+  onClickRemovePrivate(item: any, title: string, buttons: Array<any>) {
     let config = new MiaConfirmModalConfig();
-    config.title = 'Are you sure?';
+    config.title = title;
+    config.buttons = buttons;
     this.dialog.open(MiaConfirmModalComponent, {
       data: config
     }).afterClosed().pipe(truly()).subscribe(result => this.onRemove(item));
+  }
+
+  onClickRemove(item: any) {
+    this.onClickRemovePrivate(item, 'Are you sure?', [{ title: 'NO', value: false }, { title: 'YES', value: true } ]);
+  }
+
+  onClickRemoveEs(item: any) {
+    this.onClickRemovePrivate(item, '¿Usted esta seguro?', [{ title: 'NO', value: false }, { title: 'SI', value: true } ]);
   }
 
   loadItems() {
