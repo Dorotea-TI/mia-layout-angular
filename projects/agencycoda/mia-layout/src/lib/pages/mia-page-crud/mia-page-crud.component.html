@@ -20,6 +20,10 @@
         </mat-form-field>
 
         <mia-filter-box *ngIf="config.filterBox" [config]="config.filterBox" [query]="config.tableConfig.query" (call)="onFilter($event)"></mia-filter-box>
+
+        <mia-edit-columns *ngIf="config.showColumnsButton" [config]="config.tableConfig" [miaTable]="tableComp">
+            <button>Columnas</button>
+        </mia-edit-columns>
     </div>
 
     <div>

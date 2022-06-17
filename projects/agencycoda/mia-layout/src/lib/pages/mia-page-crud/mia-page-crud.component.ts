@@ -12,6 +12,7 @@ export class MiaPageCrudConfig {
   buttons: Array<{ key: string, title: string, icon?: string, classes?: string }> = [];
   formConfig = new MiaFormModalConfig();
   filterBox?: MiaFilterBoxConfig;
+  showColumnsButton?: boolean = false;
 }
 
 @Component({
