@@ -77,6 +77,10 @@ export class MiaPageCrudComponent implements OnInit {
     this.onClickRemovePrivate(item, '¿Usted esta seguro?', [{ title: 'NO', value: false }, { title: 'SI', value: true } ]);
   }
 
+  onFilter(filters: any) {
+    this.tableComp.loadItems();
+  }
+
   loadItems() {
     this.tableComp.loadItems();
   }
