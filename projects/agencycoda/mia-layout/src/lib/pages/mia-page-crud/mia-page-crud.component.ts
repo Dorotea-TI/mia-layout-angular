@@ -1,5 +1,5 @@
 import { MiaConfirmModalComponent, MiaConfirmModalConfig, truly } from '@agencycoda/mia-core';
-import { MiaFormModalComponent, MiaFormModalConfig } from '@agencycoda/mia-form';
+import { MiaFilterBoxConfig, MiaFormModalComponent, MiaFormModalConfig } from '@agencycoda/mia-form';
 import { MiaTableComponent, MiaTableConfig } from '@agencycoda/mia-table';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -11,6 +11,7 @@ export class MiaPageCrudConfig {
   hasSearch = false;
   buttons: Array<{ key: string, title: string, icon?: string, classes?: string }> = [];
   formConfig = new MiaFormModalConfig();
+  filterBox?: MiaFilterBoxConfig;
 }
 
 @Component({
