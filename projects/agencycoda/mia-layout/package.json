@@ -1,14 +1,14 @@
 {
   "name": "@agencycoda/mia-layout",
-  "version": "0.0.13",
+  "version": "13.1.0",
   "peerDependencies": {
-    "@angular/common": ">=12.0.0",
-    "@angular/core": ">=12.0.0",
-    "@angular/cdk": ">=12.0.0",
-    "@agencycoda/mia-core": ">=11.0.30",
-    "@agencycoda/mia-auth": ">=11.0.30",
-    "@agencycoda/mia-table": ">=11.0.30",
-    "@agencycoda/mia-form": ">=11.0.64"
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0",
+    "@angular/cdk": ">=13.0.0",
+    "@agencycoda/mia-core": ">=13.1.0",
+    "@agencycoda/mia-auth": ">=13.1.0",
+    "@agencycoda/mia-table": ">=13.1.0",
+    "@agencycoda/mia-form": ">=13.1.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
