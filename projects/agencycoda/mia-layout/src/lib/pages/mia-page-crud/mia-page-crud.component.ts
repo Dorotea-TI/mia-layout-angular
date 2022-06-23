@@ -1,4 +1,4 @@
-import { MiaConfirmModalComponent, MiaConfirmModalConfig, truly } from '@agencycoda/mia-core';
+import { MiaConfirmModalComponent, MiaConfirmModalConfig, MiaPagination, truly } from '@agencycoda/mia-core';
 import { MiaFilterBoxConfig, MiaFormModalComponent, MiaFormModalConfig } from '@agencycoda/mia-form';
 import { MiaTableComponent, MiaTableConfig } from '@agencycoda/mia-table';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
@@ -26,6 +26,7 @@ export class MiaPageCrudComponent implements OnInit {
 
   @Input() config!: MiaPageCrudConfig;
   @Output() action = new EventEmitter<{key: string; item: any;}>();
+  @Output() loadDataCompleted = new EventEmitter<MiaPagination<any>>();
 
   @Input() hasBackButton = false;
   inputSearch = new FormControl('');
@@ -80,6 +81,10 @@ export class MiaPageCrudComponent implements OnInit {
 
   onFilter(filters: any) {
     this.tableComp.loadItems();
+  }
+
+  onLoadDataCompleted(data: MiaPagination<any>) {
+    this.loadDataCompleted.emit(data);
   }
 
   loadItems() {

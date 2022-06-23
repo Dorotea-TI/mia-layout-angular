@@ -28,7 +28,7 @@
 
     <div>
         <div class="container-table">
-            <mia-table #tableComp [config]="config.tableConfig"></mia-table>
+            <mia-table #tableComp [config]="config.tableConfig" (loadDataCompleted)="onLoadDataCompleted($event)"></mia-table>
         </div>
     </div>
 </div>
