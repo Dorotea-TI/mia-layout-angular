@@ -82,6 +82,7 @@ export class MiaPageCrudComponent implements OnInit {
   }
 
   onFilter(filters: any) {
+    this.action.emit({ key: 'on-filter', item: filters });
     this.tableComp.loadItems();
   }
 
