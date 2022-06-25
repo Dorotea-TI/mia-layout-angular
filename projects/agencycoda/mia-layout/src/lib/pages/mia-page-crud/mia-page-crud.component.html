@@ -16,13 +16,13 @@
 
         <mat-form-field appearance="outline">
             <mat-icon matPrefix>search</mat-icon>
-            <input matInput type="text" placeholder="Search..." [formControl]="inputSearch" />
+            <input matInput type="text" [placeholder]="lang == 'es' ? 'Buscar...' : 'Search...'" [formControl]="inputSearch" />
         </mat-form-field>
 
-        <mia-filter-box *ngIf="config.filterBox" [config]="config.filterBox" [query]="config.tableConfig.query" (call)="onFilter($event)"></mia-filter-box>
+        <mia-filter-box *ngIf="config.filterBox" [config]="config.filterBox" [query]="config.tableConfig.query" (call)="onFilter($event)" [lang]="lang"></mia-filter-box>
 
         <mia-edit-columns *ngIf="config.showColumnsButton" [config]="config.tableConfig" [miaTable]="tableComp">
-            <button>Columnas</button>
+            <button>{{lang == 'es' ? 'Columnas' : 'Columns'}}</button>
         </mia-edit-columns>
     </div>
 

@@ -31,6 +31,8 @@ export class MiaPageCrudComponent implements OnInit {
   @Input() hasBackButton = false;
   inputSearch = new FormControl('');
 
+  @Input() lang: string = 'en';
+
   constructor(
     protected dialog: MatDialog
   ) { }
