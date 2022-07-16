@@ -14,7 +14,7 @@
 
     <div class="toolbar-two d-flex">
 
-        <mat-form-field appearance="outline">
+        <mat-form-field *ngIf="config.hasSearch" appearance="outline">
             <mat-icon matPrefix>search</mat-icon>
             <input matInput type="text" [placeholder]="lang == 'es' ? 'Buscar...' : 'Search...'" [formControl]="inputSearch" />
         </mat-form-field>

@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class MiaPageCrudConfig {
   title = '';
   tableConfig = new MiaTableConfig();
-  hasSearch = false;
+  hasSearch = true;
   buttons: Array<{ key: string, title: string, icon?: string, classes?: string }> = [];
   formConfig = new MiaFormModalConfig();
   filterBox?: MiaFilterBoxConfig;
