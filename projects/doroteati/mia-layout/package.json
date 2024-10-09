@@ -1,10 +1,10 @@
 {
   "name": "@agencycoda/mia-layout",
-  "version": "13.1.6",
+  "version": "14.0.0",
   "peerDependencies": {
-    "@angular/common": ">=13.0.0",
-    "@angular/core": ">=13.0.0",
-    "@angular/cdk": ">=13.0.0",
+    "@angular/common": ">=14.0.0",
+    "@angular/core": ">=14.0.0",
+    "@angular/cdk": ">=14.0.0",
     "@agencycoda/mia-core": ">=13.1.0",
     "@agencycoda/mia-auth": ">=13.1.0",
     "@agencycoda/mia-table": ">=13.1.0",
