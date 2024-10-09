@@ -2,7 +2,7 @@ import { MiaConfirmModalComponent, MiaConfirmModalConfig, MiaPagination, truly }
 import { MiaFilterBoxConfig, MiaFormModalComponent, MiaFormModalConfig } from '@agencycoda/mia-form';
 import { MiaTableComponent, MiaTableConfig } from '@agencycoda/mia-table';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 export class MiaPageCrudConfig {
@@ -29,7 +29,7 @@ export class MiaPageCrudComponent implements OnInit {
   @Output() loadDataCompleted = new EventEmitter<MiaPagination<any>>();
 
   @Input() hasBackButton = false;
-  inputSearch = new FormControl('');
+  inputSearch = new UntypedFormControl('');
 
   @Input() lang: string = 'en';
 
