@@ -1,15 +1,36 @@
-import { MiaConfirmModalComponent, MiaConfirmModalConfig, MiaPagination, truly } from '@agencycoda/mia-core';
-import { MiaFilterBoxConfig, MiaFormModalComponent, MiaFormModalConfig } from '@agencycoda/mia-form';
-import { MiaTableComponent, MiaTableConfig } from '@agencycoda/mia-table';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import {
+  MiaConfirmModalComponent,
+  MiaConfirmModalConfig,
+  MiaPagination,
+  truly,
+} from '@doroteati/mia-core';
+import {
+  MiaFilterBoxConfig,
+  MiaFormModalComponent,
+  MiaFormModalConfig,
+} from '@doroteati/mia-form';
+import { MiaTableComponent, MiaTableConfig } from '@doroteati/mia-table';
 
 export class MiaPageCrudConfig {
   title = '';
   tableConfig = new MiaTableConfig();
   hasSearch = true;
-  buttons: Array<{ key: string, title: string, icon?: string, classes?: string }> = [];
+  buttons: Array<{
+    key: string;
+    title: string;
+    icon?: string;
+    classes?: string;
+  }> = [];
   formConfig = new MiaFormModalConfig();
   filterBox?: MiaFilterBoxConfig;
   showColumnsButton?: boolean = false;
@@ -18,14 +39,13 @@ export class MiaPageCrudConfig {
 @Component({
   selector: 'mia-page-crud',
   templateUrl: './mia-page-crud.component.html',
-  styleUrls: ['./mia-page-crud.component.scss']
+  styleUrls: ['./mia-page-crud.component.scss'],
 })
 export class MiaPageCrudComponent implements OnInit {
-
   @ViewChild('tableComp') tableComp!: MiaTableComponent;
 
   @Input() config!: MiaPageCrudConfig;
-  @Output() action = new EventEmitter<{key: string; item: any;}>();
+  @Output() action = new EventEmitter<{ key: string; item: any }>();
   @Output() loadDataCompleted = new EventEmitter<MiaPagination<any>>();
 
   @Input() hasBackButton = false;
@@ -33,9 +53,7 @@ export class MiaPageCrudComponent implements OnInit {
 
   @Input() lang: string = 'en';
 
-  constructor(
-    protected dialog: MatDialog
-  ) { }
+  constructor(protected dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadConfig();
@@ -47,11 +65,13 @@ export class MiaPageCrudComponent implements OnInit {
   }
 
   openFormCustom(config: MiaFormModalConfig) {
-    return this.dialog.open(MiaFormModalComponent, {
-      width: '500px',
-      panelClass: 'modal-full-width-mobile',
-      data: config
-    }).afterClosed();
+    return this.dialog
+      .open(MiaFormModalComponent, {
+        width: '500px',
+        panelClass: 'modal-full-width-mobile',
+        data: config,
+      })
+      .afterClosed();
   }
 
   onClickButton(key: string) {
@@ -59,7 +79,7 @@ export class MiaPageCrudComponent implements OnInit {
   }
 
   onRemove(item: any) {
-    this.config.tableConfig.service.remove(item.id).then(result => {
+    this.config.tableConfig.service.remove(item.id).subscribe((result) => {
       this.loadItems();
     });
   }
@@ -68,17 +88,27 @@ export class MiaPageCrudComponent implements OnInit {
     let config = new MiaConfirmModalConfig();
     config.title = title;
     config.buttons = buttons;
-    this.dialog.open(MiaConfirmModalComponent, {
-      data: config
-    }).afterClosed().pipe(truly()).subscribe(result => this.onRemove(item));
+    this.dialog
+      .open(MiaConfirmModalComponent, {
+        data: config,
+      })
+      .afterClosed()
+      .pipe(truly())
+      .subscribe((result) => this.onRemove(item));
   }
 
   onClickRemove(item: any) {
-    this.onClickRemovePrivate(item, 'Are you sure?', [{ title: 'NO', value: false }, { title: 'YES', value: true } ]);
+    this.onClickRemovePrivate(item, 'Are you sure?', [
+      { title: 'NO', value: false },
+      { title: 'YES', value: true },
+    ]);
   }
 
   onClickRemoveEs(item: any) {
-    this.onClickRemovePrivate(item, '¿Usted esta seguro?', [{ title: 'NO', value: false }, { title: 'SI', value: true } ]);
+    this.onClickRemovePrivate(item, '¿Usted esta seguro?', [
+      { title: 'NO', value: false },
+      { title: 'SI', value: true },
+    ]);
   }
 
   onFilter(filters: any) {
@@ -95,10 +125,12 @@ export class MiaPageCrudComponent implements OnInit {
   }
 
   loadConfig() {
-    this.config.tableConfig.onClick.subscribe(result => {
+    this.config.tableConfig.onClick.subscribe((result) => {
       this.action.emit(result);
     });
 
-    this.inputSearch.valueChanges.subscribe(text => this.action.emit({ key: 'search', item: text }));
+    this.inputSearch.valueChanges.subscribe((text) =>
+      this.action.emit({ key: 'search', item: text })
+    );
   }
 }

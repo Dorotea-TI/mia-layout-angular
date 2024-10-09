@@ -16,11 +16,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 /** MIA Libraries */
-import { MiaAuthModule } from '@agencycoda/mia-auth';
-import { MiaTableModule } from '@agencycoda/mia-table';
-import { MiaLoadingModule } from '@agencycoda/mia-loading';
-import { MiaCoreModule } from '@agencycoda/mia-core';
-import { MiaFormModule } from '@agencycoda/mia-form';
+import { MiaAuthModule } from '@doroteati/mia-auth';
+import { MiaTableModule } from '@doroteati/mia-table';
+import { MiaLoadingModule } from '@doroteati/mia-loading';
+import { MiaCoreModule } from '@doroteati/mia-core';
+import { MiaFormModule } from '@doroteati/mia-form';
 
 /** Components */
 import { MiaMainLayoutComponent } from './components/mia-main-layout/mia-main-layout.component';
@@ -29,12 +29,6 @@ import { MiaListComponent } from './components/mia-list/mia-list.component';
 /** Pages */
 import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.component';
 
-
-
-
-
-
-
 @NgModule({
   declarations: [
     // Components
@@ -42,7 +36,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     MiaListComponent,
 
     // Pages
-    MiaPageCrudComponent
+    MiaPageCrudComponent,
   ],
   imports: [
     // Angular Core
@@ -66,7 +60,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     MiaAuthModule,
     MiaLoadingModule,
     MiaTableModule,
-    MiaFormModule
+    MiaFormModule,
   ],
   exports: [
     // Components
@@ -74,7 +68,7 @@ import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.compon
     MiaListComponent,
 
     // Pages
-    MiaPageCrudComponent
-  ]
+    MiaPageCrudComponent,
+  ],
 })
-export class MiaLayoutModule { }
+export class MiaLayoutModule {}

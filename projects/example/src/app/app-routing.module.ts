@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MiaMainLayoutComponent, MiaMainLayoutConfig } from 'projects/agencycoda/mia-layout/src/public-api';
+import {
+  MiaMainLayoutComponent,
+  MiaMainLayoutConfig,
+} from 'projects/doroteati/mia-layout/src/public-api';
 import { VideosComponent } from './pages/videos/videos.component';
 
 const routes: Routes = [
@@ -9,41 +12,40 @@ const routes: Routes = [
     component: MiaMainLayoutComponent,
     data: {
       title: 'Agency Coda',
-      logoImage: 'https://agencycoda.com/wp-content/uploads/2021/02/agency-coda-white-text@3x.png',
+      logoImage:
+        'https://doroteati.com/wp-content/uploads/2021/02/agency-coda-white-text@3x.png',
       mainRoute: '/',
       itemsMenu: [
         {
           title: 'Dashboard',
           route: '/dashboard',
-          icon: 'dashboard'
+          icon: 'dashboard',
         },
         {
           title: 'Videos',
           route: '/videos',
-          icon: 'dashboard'
-        }
+          icon: 'dashboard',
+        },
       ],
       userMenu: [
         {
           title: 'My Profile',
           route: 'my-profile',
-          icon: 'account_circle'
+          icon: 'account_circle',
         },
         {
           title: 'Logout',
           action: 'logout',
-          icon: 'logout'
-        }
-      ]
+          icon: 'logout',
+        },
+      ],
     } as MiaMainLayoutConfig,
-    children: [
-      { path: 'videos', component: VideosComponent }
-    ]
+    children: [{ path: 'videos', component: VideosComponent }],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

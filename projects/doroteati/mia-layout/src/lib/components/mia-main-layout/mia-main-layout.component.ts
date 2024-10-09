@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import {
+  BreakpointObserver,
+  Breakpoints,
+  BreakpointState,
+} from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MiaItemList } from '../mia-list/mia-list.component';
-import { MiaAuthService, MiaUser } from '@agencycoda/mia-auth';
-import { nil } from '@agencycoda/mia-core';
 import { UserMenuService } from '../../services/user_menu.service';
+import { MiaAuthService, MiaUser } from '@doroteati/mia-auth';
+import { nil } from '@doroteati/mia-core';
 
 export class MiaMainLayoutConfig {
   title?: string;
@@ -17,10 +21,9 @@ export class MiaMainLayoutConfig {
 @Component({
   selector: 'mia-main-layout',
   templateUrl: './mia-main-layout.component.html',
-  styleUrls: ['./mia-main-layout.component.scss']
+  styleUrls: ['./mia-main-layout.component.scss'],
 })
 export class MiaMainLayoutComponent implements OnInit {
-
   config!: MiaMainLayoutConfig;
   isSidebarOpen: boolean = true;
   currentUser?: MiaUser;
@@ -31,7 +34,7 @@ export class MiaMainLayoutComponent implements OnInit {
     protected authService: MiaAuthService,
     protected navigator: Router,
     protected userMenuService: UserMenuService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadConfig();
@@ -50,11 +53,13 @@ export class MiaMainLayoutComponent implements OnInit {
   }
 
   loadUser() {
-    this.authService.currentUser.pipe(nil()).subscribe(data => this.currentUser = data as MiaUser);
+    this.authService.currentUser
+      .pipe(nil())
+      .subscribe((data) => (this.currentUser = data as MiaUser));
   }
 
   loadConfig() {
-    this.route.data.subscribe(result => {
+    this.route.data.subscribe((result) => {
       this.config = result as MiaMainLayoutConfig;
     });
   }
@@ -66,7 +71,7 @@ export class MiaMainLayoutComponent implements OnInit {
         if (state.matches) {
           this.isSidebarOpen = false;
         }
-    });
+      });
   }
 
   onClickLogout() {

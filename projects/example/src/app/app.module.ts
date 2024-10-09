@@ -6,21 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /** MIA Libraries */
-import { MiaLayoutModule } from 'projects/agencycoda/mia-layout/src/public-api';
+import { MiaLayoutModule } from 'projects/doroteati/mia-layout/src/public-api';
 import { VideosComponent } from './pages/videos/videos.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    VideosComponent
-  ],
+  declarations: [AppComponent, VideosComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MiaLayoutModule
+    MiaLayoutModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
