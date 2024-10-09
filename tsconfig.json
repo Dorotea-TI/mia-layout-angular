@@ -3,9 +3,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@agencycoda/mia-layout": [
-        "dist/agencycoda/mia-layout/agencycoda-mia-layout",
-        "dist/agencycoda/mia-layout"
+      "@doroteati/mia-layout": [
+        "dist/doroteati/mia-layout/doroteati-mia-layout",
+        "dist/doroteati/mia-layout"
       ]
     },
     "baseUrl": "./",
@@ -22,10 +22,7 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

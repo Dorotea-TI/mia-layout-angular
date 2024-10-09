@@ -6,28 +6,28 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@agencycoda/mia-layout": {
+    "@doroteati/mia-layout": {
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/agencycoda/mia-layout",
-      "sourceRoot": "projects/agencycoda/mia-layout/src",
+      "root": "projects/doroteati/mia-layout",
+      "sourceRoot": "projects/doroteati/mia-layout/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/agencycoda/mia-layout/ng-package.json"
+            "project": "projects/doroteati/mia-layout/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/agencycoda/mia-layout/tsconfig.lib.prod.json"
+              "tsConfig": "projects/doroteati/mia-layout/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/agencycoda/mia-layout/tsconfig.lib.json"
+              "tsConfig": "projects/doroteati/mia-layout/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -35,9 +35,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/agencycoda/mia-layout/src/test.ts",
-            "tsConfig": "projects/agencycoda/mia-layout/tsconfig.spec.json",
-            "karmaConfig": "projects/agencycoda/mia-layout/karma.conf.js"
+            "main": "projects/doroteati/mia-layout/src/test.ts",
+            "tsConfig": "projects/doroteati/mia-layout/tsconfig.spec.json",
+            "karmaConfig": "projects/doroteati/mia-layout/karma.conf.js"
           }
         }
       }
