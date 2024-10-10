@@ -40,7 +40,11 @@ const routes: Routes = [
         },
       ],
     } as MiaMainLayoutConfig,
-    children: [{ path: 'videos', component: VideosComponent }],
+    children: [
+      { path: 'videos', component: VideosComponent },
+      { path: 'dashboard', component: VideosComponent },
+      { path: '**', redirectTo: 'videos' },
+    ],
   },
 ];
 

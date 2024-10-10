@@ -1,33 +1,69 @@
-<div class="background" [ngClass]="{ 'background-active': isSidebarOpen }" (click)="isSidebarOpen = false"></div>
+<div
+  class="background"
+  [ngClass]="{ 'background-active': isSidebarOpen }"
+  (click)="isSidebarOpen = false"
+></div>
 
 <div class="main-layout">
-  <div class="sidebar animated" [ngClass]="{'sidebar_open': isSidebarOpen}">
-    <button mat-icon-button class="btn-menu" (click)="isSidebarOpen = !isSidebarOpen">
+  <div class="sidebar animated" [ngClass]="{ sidebar_open: isSidebarOpen }">
+    <button
+      mat-icon-button
+      class="btn-menu"
+      (click)="isSidebarOpen = !isSidebarOpen"
+    >
       <mat-icon *ngIf="!isSidebarOpen">menu</mat-icon>
       <mat-icon *ngIf="isSidebarOpen">close</mat-icon>
     </button>
 
     <a [routerLink]="[config.mainRoute]" class="logo">
-      <img class="" [src]="config.logoImage" [alt]="config.title" onerror="this.src='/assets/img/image-not-found-horiz.svg';" />
+      <img
+        class=""
+        [src]="config.logoImage"
+        [alt]="config.title"
+        onerror="this.src='/assets/img/image-not-found-horiz.svg';"
+      />
     </a>
 
     <mat-divider></mat-divider>
 
-    <mia-list [isOpen]="isSidebarOpen" [items]="config.itemsMenu" (clickItem)="onClickItem($event)"></mia-list>
+    <mia-list
+      [isOpen]="isSidebarOpen"
+      [items]="config.itemsMenu"
+      (clickItem)="onClickItem($event)"
+    ></mia-list>
 
-    <mat-divider style="margin-top: auto !important;"></mat-divider>
+    <mat-divider style="margin-top: auto !important"></mat-divider>
 
-    <a *ngIf="currentUser" mat-button [matMenuTriggerFor]="menu" class="btn-user" (click)="onClickItem()">
-      <div class="image"><img [src]="currentUser?.photo" onerror="this.src='/assets/img/user-avatar-empty.svg';" /></div>
-        {{ currentUser?.firstname }} {{ currentUser?.lastname }}
+    <a
+      *ngIf="currentUser"
+      mat-button
+      [matMenuTriggerFor]="menu"
+      class="btn-user"
+      (click)="onClickItem()"
+    >
+      <div class="image">
+        <img
+          alt="avatar"
+          [src]="currentUser?.photo"
+          onerror="this.src='/assets/img/user-avatar-empty.svg';"
+        />
+      </div>
+      {{ currentUser.firstname }} {{ currentUser.lastname }}
     </a>
   </div>
 
-  <div class="container_pages animated" [ngClass]="{'container_pages_open': isSidebarOpen}">
+  <div
+    class="container_pages animated"
+    [ngClass]="{ container_pages_open: isSidebarOpen }"
+  >
     <router-outlet></router-outlet>
   </div>
 </div>
 
 <mat-menu #menu>
-  <mia-list class="user-item-list" [items]="config.userMenu" (clickItem)="onClickItemInUserMenu($event)"></mia-list>
+  <mia-list
+    class="user-item-list"
+    [items]="config.userMenu"
+    (clickItem)="onClickItemInUserMenu($event)"
+  ></mia-list>
 </mat-menu>
