@@ -1,11 +1,12 @@
 # MiaLayout
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
 ## Code scaffolding
 
 Run `ng generate component component-name --project mia-layout` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project mia-layout`.
-> Note: Don't forget to add `--project mia-layout` or else it will be added to the default project in your `angular.json` file. 
+
+> Note: Don't forget to add `--project mia-layout` or else it will be added to the default project in your `angular.json` file.
 
 ## Build
 
