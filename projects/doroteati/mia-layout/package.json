@@ -1,14 +1,14 @@
 {
   "name": "@doroteati/mia-layout",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0",
-    "@angular/cdk": ">=14.0.0",
-    "@doroteati/mia-core": ">=14.0.2",
-    "@doroteati/mia-auth": ">=14.0.1",
-    "@doroteati/mia-table": ">=14.0.1",
-    "@doroteati/mia-form": ">=14.3.3"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0",
+    "@angular/cdk": ">=15.0.0",
+    "@doroteati/mia-core": ">=15.0.0",
+    "@doroteati/mia-auth": ">=15.0.0",
+    "@doroteati/mia-table": ">=15.0.0",
+    "@doroteati/mia-form": ">=15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
