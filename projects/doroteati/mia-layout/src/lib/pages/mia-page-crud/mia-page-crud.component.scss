@@ -1,35 +1,46 @@
-@mixin xs { @media (max-width: 599px) { @content;} }
+@mixin xs {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
 
 // General Typography styles
-.display1, .display2, .display3, h1, h2, h3, h4, h5 {
+.display1,
+.display2,
+.display3,
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 1em 0 1em;
   font-weight: 400;
   line-height: 1.3;
 }
 
-.display1{
+.display1 {
   font-size: 5.95em;
   margin-top: 0;
-  @include xs{
+  @include xs {
     font-size: 4.768em;
   }
 }
 
-.display2{
+.display2 {
   font-size: 4.768em;
-  @include xs{
+  @include xs {
     font-size: 3.815em;
   }
 }
 
-.display3{
+.display3 {
   font-size: 3.815em;
 }
 
 h1 {
   font-size: 3.052em;
   margin-top: 0;
-  @include xs{
+  @include xs {
     font-size: 2.441em;
   }
 }
@@ -55,7 +66,9 @@ h6 {
   font-size: 1em;
 }
 
-small, .text_small, .body-2{
+small,
+.text_small,
+.body-2 {
   font-size: 0.8em;
 }
 
@@ -90,24 +103,24 @@ button {
   }
 }
 
-.container-page{
-  .topbar{
+.container-page {
+  .topbar {
     display: flex;
     align-items: center;
     margin-bottom: 2em;
 
-    .btn-back{
+    .btn-back {
       margin-right: 0.5em;
     }
 
-    h1{
+    h1 {
       margin: 0;
       margin-right: auto;
     }
 
-    .btn-add{
+    .btn-add {
       margin-left: 1em;
-      @include xs{
+      @include xs {
         position: fixed;
         bottom: 1em;
         right: 1em;
@@ -123,19 +136,19 @@ button {
         display: flex;
         align-items: center;
         justify-content: center;
-        span{
+        span {
           display: none;
         }
       }
     }
   }
 
-  mat-form-field{
+  mat-form-field {
     width: 500px;
     max-width: 100%;
     margin-right: auto;
 
-    &::ng-deep .mat-form-field-infix{
+    &::ng-deep .mat-form-field-infix {
       padding-left: 0.5em;
       padding-top: 0.8em;
     }

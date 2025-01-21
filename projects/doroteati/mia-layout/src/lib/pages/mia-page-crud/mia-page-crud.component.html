@@ -1,34 +1,69 @@
+<mia-filter-box
+  *ngIf="config.filterBox"
+  [config]="config.filterBox"
+  [query]="config.tableConfig.query"
+  (call)="onFilter($event)"
+  [lang]="lang"
+></mia-filter-box>
 <div class="container-page intro-component-animation">
-    <div class="topbar">
-        <div class="breadcrumb"></div>
-        <button *ngIf="hasBackButton" mat-icon-button [routerLink]="['/routePath']" class="btn-back" matTooltip="Back"><mat-icon>arrow_back</mat-icon></button>
-        <h1><b> {{ config.title }} </b></h1>
+  <div class="topbar">
+    <div class="breadcrumb"></div>
+    <button
+      *ngIf="hasBackButton"
+      mat-icon-button
+      [routerLink]="['/routePath']"
+      class="btn-back"
+      matTooltip="Back"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>
+      <b> {{ config.title }} </b>
+    </h1>
 
-        <ng-container *ngFor="let button of config.buttons">
-            <button mat-flat-button class="btn-add {{ button.classes }}" color="primary" (click)="onClickButton(button.key)">
-              <mat-icon> {{ button.icon }} </mat-icon>
-              <span> {{ button.title }} </span>
-            </button>
-        </ng-container>
+    <ng-container *ngFor="let button of config.buttons">
+      <button
+        mat-flat-button
+        class="btn-add {{ button.classes }}"
+        color="primary"
+        (click)="onClickButton(button.key)"
+      >
+        <mat-icon> {{ button.icon }} </mat-icon>
+        <span> {{ button.title }} </span>
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="toolbar-two d-flex">
+    <mat-form-field *ngIf="config.hasSearch" appearance="outline">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="text"
+        [placeholder]="lang == 'es' ? 'Buscar...' : 'Search...'"
+        [formControl]="inputSearch"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="filters-container">
+    <div class="filter-box"></div>
+    <mia-edit-columns
+      *ngIf="config.showColumnsButton"
+      [config]="config.tableConfig"
+      [miaTable]="tableComp"
+    >
+      <button>{{ lang == "es" ? "Columnas" : "Columns" }}</button>
+    </mia-edit-columns>
+  </div>
+
+  <div>
+    <div class="container-table">
+      <mia-table
+        #tableComp
+        [config]="config.tableConfig"
+        (loadDataCompleted)="onLoadDataCompleted($event)"
+      ></mia-table>
     </div>
-
-    <div class="toolbar-two d-flex">
-
-        <mat-form-field *ngIf="config.hasSearch" appearance="outline">
-            <mat-icon matPrefix>search</mat-icon>
-            <input matInput type="text" [placeholder]="lang == 'es' ? 'Buscar...' : 'Search...'" [formControl]="inputSearch" />
-        </mat-form-field>
-
-        <mia-filter-box *ngIf="config.filterBox" [config]="config.filterBox" [query]="config.tableConfig.query" (call)="onFilter($event)" [lang]="lang"></mia-filter-box>
-
-        <mia-edit-columns *ngIf="config.showColumnsButton" [config]="config.tableConfig" [miaTable]="tableComp">
-            <button>{{lang == 'es' ? 'Columnas' : 'Columns'}}</button>
-        </mia-edit-columns>
-    </div>
-
-    <div>
-        <div class="container-table">
-            <mia-table #tableComp [config]="config.tableConfig" (loadDataCompleted)="onLoadDataCompleted($event)"></mia-table>
-        </div>
-    </div>
+  </div>
 </div>

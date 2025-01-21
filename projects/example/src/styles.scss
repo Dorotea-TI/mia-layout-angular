@@ -1,11 +1,27 @@
-@import '@angular/material/theming';
+@import "@angular/material/theming";
 @include mat-core();
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'DM Sans', "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "DM Sans", "Helvetica Neue", sans-serif;
+}
 
 $custom-typography: mat-typography-config(
-  $font-family: '"DM Sans", sans-serif'
+  $font-family: '"DM Sans", sans-serif',
 );
 @include angular-material-typography($custom-typography);
 @include mat-base-typography($custom-typography);
+
+.container-filters-menu {
+  width: 600px;
+  max-width: 100% !important;
+  padding: 0px 20px 0px 20px !important;
+
+  h5 {
+    margin-right: 15px;
+  }
+}
