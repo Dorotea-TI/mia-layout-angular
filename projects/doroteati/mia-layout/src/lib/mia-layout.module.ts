@@ -1,19 +1,13 @@
 /** Angular */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+/* import { FlexLayoutModule } from '@angular/flex-layout'; */
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-/* import { FlexLayoutModule } from '@angular/flex-layout'; */
 
 /** Angular Material */
 import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 /** MIA Libraries */
 import { MiaAuthModule } from '@doroteati/mia-auth';
@@ -28,6 +22,12 @@ import { MiaListComponent } from './components/mia-list/mia-list.component';
 
 /** Pages */
 import { MiaPageCrudComponent } from './pages/mia-page-crud/mia-page-crud.component';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [

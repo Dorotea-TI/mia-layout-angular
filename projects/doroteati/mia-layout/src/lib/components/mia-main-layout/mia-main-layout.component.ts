@@ -4,11 +4,11 @@ import {
   Breakpoints,
   BreakpointState,
 } from '@angular/cdk/layout';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MiaItemList } from '../mia-list/mia-list.component';
 import { UserMenuService } from '../../services/user_menu.service';
-import { MiaAuthService, MiaUser } from '@doroteati/mia-auth';
 import { nil } from '@doroteati/mia-core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MiaAuthService, MiaUser } from '@doroteati/mia-auth';
 
 export class MiaMainLayoutConfig {
   title?: string;
@@ -31,9 +31,9 @@ export class MiaMainLayoutComponent implements OnInit {
   constructor(
     protected breakpointObserver: BreakpointObserver,
     protected route: ActivatedRoute,
-    protected authService: MiaAuthService,
     protected navigator: Router,
-    protected userMenuService: UserMenuService
+    protected userMenuService: UserMenuService,
+    protected authService: MiaAuthService
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +49,9 @@ export class MiaMainLayoutComponent implements OnInit {
   }
 
   onClickItemInUserMenu(item?: MiaItemList) {
-    this.userMenuService.onClick.next(item);
+    if (item) {
+      this.userMenuService.onClick.next(item);
+    }
   }
 
   loadUser() {
