@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'http://dorotea.test/',
+  nestBaseUrl: 'http://localhost:3001/',
+  basePublicSellerUrl: 'https://vendedor.dorotea.co/',
+  basePublicUrl: 'http://localhost:4200/',
 };
 
 /*
