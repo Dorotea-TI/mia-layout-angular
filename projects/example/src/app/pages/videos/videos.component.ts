@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MiaFilterBoxConfig } from '@doroteati/mia-form';
+import { MiaQuery } from '@doroteati/mia-core';
+import { MiaFilterBoxConfig, MiaFilterType } from '@doroteati/mia-form';
 import {
   MiaPageCrudComponent,
   MiaPageCrudConfig,
 } from 'projects/doroteati/mia-layout/src/public-api';
+import { AuctionService } from '../../services/auction.service';
+import { AuctionGroupService } from '../../services/auction_group.service';
 
 @Component({
   selector: 'app-videos',
@@ -15,14 +18,23 @@ export class VideosComponent implements OnInit {
 
   config = new MiaPageCrudConfig();
 
-  constructor() {}
+  constructor(
+    protected auctionService: AuctionService,
+    protected groupService: AuctionGroupService
+  ) {}
 
   ngOnInit(): void {
     this.loadConfig();
   }
 
   onSearch(text: string) {
-    console.log('Searching: ' + text);
+    this.config.tableConfig.query.resetWhere();
+    if (text.length > 2) {
+      this.config.tableConfig.query.addWhereLikes(['title'], text);
+    } else if (text.length > 0) {
+      return;
+    }
+    this.pageComp.loadItems();
   }
 
   onAction(action: { key: string; item: any }) {
@@ -30,56 +42,81 @@ export class VideosComponent implements OnInit {
       alert('Click ADD');
     } else if (action.key == 'search') {
       this.onSearch(action.item);
+    } else if (action.key == 'remove') {
+      this.pageComp.onClickRemoveEs(action.item);
     }
+    // El resto de acciones permanecen igual como antes
+    console.log('Action:', action);
   }
 
   loadTableConfig() {
+    this.config.tableConfig.query.addWith('group');
+
     this.config.tableConfig.loadingColor = 'black';
     this.config.tableConfig.hasEmptyScreen = false;
-    //this.config.tableConfig.service = this.videoService;
+
+    // ¡CONECTAR EL SERVICIO REAL!
+    this.config.tableConfig.service = this.auctionService;
+
     this.config.tableConfig.columns = [
       { key: 'id', type: 'string', title: '#', field_key: 'id' },
-      { key: 'amount', type: 'string', title: 'Monto', field_key: 'amount' },
-      { key: 'title', type: 'string', title: 'Title', field_key: 'title' },
-      { key: 'date', type: 'string', title: 'Fecha', field_key: 'date' },
       {
-        key: 'provider',
-        type: 'string',
-        title: 'Proveedor',
-        field_key: 'provider',
-      },
-      { key: 'status', type: 'string', title: '', field_key: 'status' },
-      {
-        key: 'more',
-        type: 'more',
-        title: '',
+        key: 'group',
+        type: 'user',
+        title: 'Subasta',
         extra: {
-          actions: [
+          field_firstname: ['group', 'title'],
+          field_subtitle: ['group', 'code'],
+        },
+      },
+      { key: 'title', type: 'string', title: 'Nombre', field_key: 'title' },
+      { key: 'code', type: 'string', title: 'Key code', field_key: 'code' },
+      {
+        key: 'visibility',
+        type: 'status',
+        title: 'Visibilidad',
+        field_key: 'visibility',
+        extra: {
+          options: [
+            { value: 0, title: 'Invitacion Cerrada' },
+            { value: 1, title: 'Publica' },
+          ],
+        },
+      },
+      {
+        key: 'type',
+        type: 'status',
+        title: 'Tipo',
+        field_key: 'type',
+        extra: {
+          options: [
+            { value: 0, title: 'Subasta en Linea' },
+            { value: 1, title: 'Martillo virtual' },
+            { value: 2, title: 'Martillo presencial' },
+          ],
+        },
+      },
+      {
+        key: 'status',
+        type: 'status',
+        title: 'Estado',
+        field_key: 'status',
+        extra: {
+          options: [
+            { value: 0, title: 'En Borrador', color: 'pending' },
+            { value: 1, title: 'Activa', color: 'success' },
+            { value: 2, title: 'Finalizada', color: 'accent' },
+            { value: 3, title: 'Completada', color: 'black' },
+            { value: 4, title: 'Cerrada con visualización', color: 'accent' },
             {
-              icon: 'warning',
-              title: 'Sin aprobar (si es costo fijo)',
-              key: 'withou_approve',
+              value: 5,
+              title: 'Programada con visualización',
+              color: 'accent',
             },
-            {
-              icon: 'check',
-              title: 'Aprobar (si es costo fijo)',
-              key: 'approve',
-            },
-            { icon: 'create', title: 'Editar', key: 'edit' },
-            { icon: 'delete', title: 'Borrar', key: 'remove' },
           ],
         },
       },
     ];
-  }
-
-  loadConfig() {
-    this.config.title = 'Videos';
-
-    this.config.buttons.push({ key: 'add', title: 'Agregar', icon: 'edit' });
-
-    this.loadTableConfig();
-    this.loadFilterBox();
   }
 
   loadFilterBox() {
@@ -89,7 +126,7 @@ export class VideosComponent implements OnInit {
         key: 'visibility',
         title: 'Visibilidad',
         value: 1,
-        type: 1,
+        type: MiaFilterType.TYPE_OPTIONS,
         options: [
           { id: 0, title: 'Invitacion Cerrada', color: 'warning' },
           { id: 1, title: 'Publica', color: 'success' },
@@ -99,7 +136,7 @@ export class VideosComponent implements OnInit {
         key: 'type',
         title: 'Tipo',
         value: 0,
-        type: 2,
+        type: MiaFilterType.TYPE_OPTIONS,
         options: [
           { id: 0, title: 'Subasta en Linea', color: 'warning' },
           { id: 1, title: 'Martillo virtual', color: 'success' },
@@ -110,7 +147,7 @@ export class VideosComponent implements OnInit {
         key: 'status',
         title: 'Estado',
         value: 1,
-        type: 3,
+        type: MiaFilterType.TYPE_OPTIONS,
         options: [
           { id: 0, title: 'En Borrador', color: 'pending' },
           { id: 1, title: 'Activa', color: 'success' },
@@ -120,6 +157,27 @@ export class VideosComponent implements OnInit {
           { id: 5, title: 'Programada con visualización', color: 'accent' },
         ],
       },
+      {
+        key: 'group_id',
+        title: 'Subasta',
+        type: MiaFilterType.TYPE_OPTIONS_SERVICE,
+        extra: {
+          service: this.groupService,
+          field_display: 'title',
+          field_value: 'id',
+          query: new MiaQuery(),
+        },
+      },
     ];
+  }
+
+  loadConfig() {
+    this.config.title = 'Activos';
+    this.config.showColumnsButton = true;
+
+    this.config.buttons.push({ key: 'add', title: 'Agregar', icon: 'add' });
+
+    this.loadTableConfig();
+    this.loadFilterBox();
   }
 }
