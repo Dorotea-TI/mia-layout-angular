@@ -70,6 +70,12 @@ export class VideosComponent implements OnInit {
         },
       },
       { key: 'title', type: 'string', title: 'Nombre', field_key: 'title' },
+      {
+        key: 'date_at',
+        type: 'string',
+        title: 'Inicio / Finalización',
+        field_key: 'end_date',
+      },
       { key: 'code', type: 'string', title: 'Key code', field_key: 'code' },
       {
         key: 'visibility',

@@ -25,7 +25,7 @@
     "@angular/router": "^14.3.0",
     "@doroteati/mia-auth": "^14.0.1",
     "@doroteati/mia-core": "^14.0.2",
-    "@doroteati/mia-form": "^14.4.2",
+    "@doroteati/mia-form": "^14.4.10",
     "@doroteati/mia-loading": "^14.0.0",
     "@doroteati/mia-table": "^14.0.1",
     "@ngx-pwa/local-storage": "^13.0.5",
