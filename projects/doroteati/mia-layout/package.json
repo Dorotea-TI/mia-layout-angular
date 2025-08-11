@@ -1,6 +1,6 @@
 {
   "name": "@doroteati/mia-layout",
-  "version": "14.0.3",
+  "version": "14.1.0",
   "peerDependencies": {
     "@angular/common": ">=14.0.0",
     "@angular/core": ">=14.0.0",
