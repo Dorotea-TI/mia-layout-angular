@@ -4,6 +4,12 @@
   }
 }
 
+@mixin sm {
+  @media (max-width: 959px) {
+    @content;
+  }
+}
+
 // General Typography styles
 .display1,
 .display2,
@@ -104,6 +110,8 @@ button {
 }
 
 .container-page {
+  padding: 1rem;
+
   .topbar {
     display: flex;
     align-items: center;
@@ -143,6 +151,156 @@ button {
     }
   }
 
+  // Nueva sección unificada de filtros
+  .filters-section {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    @include xs {
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    // Filter box dentro de la sección
+    mia-filter-box {
+      display: block;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // Controles de toolbar unificados
+    .toolbar-controls {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+
+      @include xs {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+
+      .toolbar-two {
+        flex: 1;
+
+        &.d-flex {
+          display: flex;
+          align-items: center;
+
+          @include xs {
+            width: 100%;
+          }
+        }
+
+        mat-form-field {
+          width: 100%;
+          max-width: 500px;
+          margin: 0;
+
+          @include xs {
+            max-width: 100%;
+          }
+
+          &::ng-deep .mat-form-field-infix {
+            padding-left: 0.5em;
+            padding-top: 0.8em;
+          }
+        }
+      }
+
+      .filters-container {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+
+        @include xs {
+          justify-content: flex-end;
+        }
+
+        mia-edit-columns {
+          ::ng-deep button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            background: white;
+            border: 1px solid #dee2e6;
+
+            &:hover {
+              background-color: #e9ecef;
+              border-color: #adb5bd;
+            }
+          }
+        }
+      }
+    }
+
+    // Cuando no hay filter-box, ajustar el espaciado
+    &:not(:has(mia-filter-box)) .toolbar-controls {
+      margin-bottom: 0;
+    }
+
+    // Cuando solo hay filter-box
+    &:has(mia-filter-box):not(:has(.toolbar-controls mat-form-field)):not(
+        :has(.toolbar-controls mia-edit-columns)
+      ) {
+      .toolbar-controls {
+        display: none;
+      }
+    }
+  }
+
+  // Wrapper de tabla mejorado
+  .table-wrapper {
+    .container-table {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e9ecef;
+      overflow: hidden;
+
+      ::ng-deep {
+        mia-table {
+          display: block;
+
+          .mat-mdc-table {
+            border-radius: 8px;
+          }
+
+          .mat-mdc-header-row {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+          }
+
+          .mat-mdc-row {
+            transition: background-color 0.2s ease;
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.02);
+            }
+
+            &:not(:last-child) {
+              border-bottom: 1px solid #f0f0f0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Estilos legacy para mat-form-field fuera de filters-section
   mat-form-field {
     width: 500px;
     max-width: 100%;
@@ -151,6 +309,21 @@ button {
     &::ng-deep .mat-form-field-infix {
       padding-left: 0.5em;
       padding-top: 0.8em;
+    }
+  }
+}
+
+// Responsive adjustments
+@include xs {
+  .container-page {
+    padding: 0.75rem;
+
+    .filters-section {
+      .toolbar-controls {
+        .toolbar-two {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }
