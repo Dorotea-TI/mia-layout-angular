@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import {
   MiaMainLayoutComponent,
   MiaMainLayoutConfig,
-} from 'projects/doroteati/mia-layout/src/public-api';
+} from '@doroteati/mia-layout';
 import { VideosComponent } from './pages/videos/videos.component';
 
-const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     component: MiaMainLayoutComponent,
@@ -24,7 +23,7 @@ const routes: Routes = [
         {
           title: 'Videos',
           route: '/videos',
-          icon: 'dashboard',
+          icon: 'video_library',
         },
       ],
       userMenu: [
@@ -43,13 +42,8 @@ const routes: Routes = [
     children: [
       { path: 'videos', component: VideosComponent },
       { path: 'dashboard', component: VideosComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'videos' },
       { path: '**', redirectTo: 'videos' },
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

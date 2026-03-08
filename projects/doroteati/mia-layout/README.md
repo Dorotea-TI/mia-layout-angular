@@ -1,25 +1,84 @@
-# MiaLayout
+# @doroteati/mia-layout
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+Libreria Angular 21 compatible con:
 
-## Code scaffolding
+- componentes standalone
+- aplicaciones basadas en `NgModule`
+- apps browser
+- apps SSR
 
-Run `ng generate component component-name --project mia-layout` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project mia-layout`.
+## Exportaciones principales
 
-> Note: Don't forget to add `--project mia-layout` or else it will be added to the default project in your `angular.json` file.
+- `MiaMainLayoutComponent`
+- `MiaListComponent`
+- `MiaPageCrudComponent`
+- `MiaLayoutModule`
+- `MIA_LAYOUT_STANDALONE_IMPORTS`
+- `UserMenuService`
+
+## Uso en app standalone
+
+```ts
+import { Component } from '@angular/core';
+import { Routes } from '@angular/router';
+import {
+  MIA_LAYOUT_STANDALONE_IMPORTS,
+  MiaMainLayoutComponent,
+} from '@doroteati/mia-layout';
+
+@Component({
+  standalone: true,
+  imports: [...MIA_LAYOUT_STANDALONE_IMPORTS],
+  template: `<mia-page-crud [config]="config"></mia-page-crud>`,
+})
+export class AdminPageComponent {}
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: MiaMainLayoutComponent,
+    children: [
+      {
+        path: 'crud',
+        component: AdminPageComponent,
+      },
+    ],
+  },
+];
+```
+
+## Uso en app con modulos
+
+```ts
+import { NgModule } from '@angular/core';
+import { MiaLayoutModule } from '@doroteati/mia-layout';
+
+@NgModule({
+  imports: [MiaLayoutModule],
+})
+export class AdminModule {}
+```
 
 ## Build
 
-Run `ng build mia-layout` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+```
 
-## Publishing
+## Peer dependencies esperadas
 
-After building your library with `ng build mia-layout`, go to the dist folder `cd dist/mia-layout` and run `npm publish`.
+- `@angular/core`
+- `@angular/common`
+- `@angular/forms`
+- `@angular/router`
+- `@angular/material`
+- `@angular/cdk`
+- `@doroteati/mia-auth`
+- `@doroteati/mia-core`
+- `@doroteati/mia-form`
+- `@doroteati/mia-loading`
+- `@doroteati/mia-table`
 
-## Running unit tests
+## Observacion importante
 
-Run `ng test mia-layout` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Aunque esta libreria ya fue migrada a Angular 21 y standalone, algunas dependencias transitivas del ecosistema `@doroteati/*` todavia usan paquetes heredados. Eso afecta peso del bundle, pero no impide compilar ni usar la libreria.

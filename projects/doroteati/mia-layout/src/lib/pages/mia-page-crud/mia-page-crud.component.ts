@@ -1,13 +1,23 @@
 import {
+  ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
   ViewChild,
+  inject,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { Router, RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   MiaConfirmModalComponent,
   MiaConfirmModalConfig,
@@ -16,10 +26,11 @@ import {
 } from '@doroteati/mia-core';
 import {
   MiaFilterBoxConfig,
+  MiaFormModule,
   MiaFormModalComponent,
   MiaFormModalConfig,
 } from '@doroteati/mia-form';
-import { MiaTableComponent, MiaTableConfig } from '@doroteati/mia-table';
+import { MiaTableComponent, MiaTableConfig, MiaTableModule } from '@doroteati/mia-table';
 
 export class MiaPageCrudConfig {
   title = '';
@@ -38,10 +49,28 @@ export class MiaPageCrudConfig {
 
 @Component({
   selector: 'mia-page-crud',
+  standalone: true,
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatTooltipModule,
+    MiaFormModule,
+    MiaTableModule,
+  ],
   templateUrl: './mia-page-crud.component.html',
   styleUrls: ['./mia-page-crud.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MiaPageCrudComponent implements OnInit {
+  protected readonly dialog = inject(MatDialog);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
+
   @ViewChild('tableComp') tableComp!: MiaTableComponent;
 
   @Input() config!: MiaPageCrudConfig;
@@ -49,11 +78,9 @@ export class MiaPageCrudComponent implements OnInit {
   @Output() loadDataCompleted = new EventEmitter<MiaPagination<any>>();
 
   @Input() hasBackButton = false;
-  inputSearch = new UntypedFormControl('');
+  inputSearch = new FormControl('', { nonNullable: true });
 
   @Input() lang: string = 'es';
-
-  constructor(protected dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadConfig();
@@ -125,12 +152,35 @@ export class MiaPageCrudComponent implements OnInit {
   }
 
   loadConfig() {
+    this.ensureTableConfigId();
+
     this.config.tableConfig.onClick.subscribe((result) => {
       this.action.emit(result);
     });
 
-    this.inputSearch.valueChanges.subscribe((text) =>
+    this.inputSearch.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((text) =>
       this.action.emit({ key: 'search', item: text })
-    );
+      );
+  }
+
+  private ensureTableConfigId(): void {
+    if (this.config.tableConfig.id?.trim()) {
+      return;
+    }
+
+    const routeKey = this.router.url
+      .split('?')[0]
+      .replace(/[^a-zA-Z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .toLowerCase();
+
+    const titleKey = this.config.title
+      .replace(/[^a-zA-Z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .toLowerCase();
+
+    this.config.tableConfig.id = routeKey || titleKey || 'mia-page-crud-table';
   }
 }

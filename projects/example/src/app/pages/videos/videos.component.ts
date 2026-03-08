@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MiaQuery } from '@doroteati/mia-core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MiaFilterBoxConfig, MiaFilterType } from '@doroteati/mia-form';
 import {
   MiaPageCrudComponent,
   MiaPageCrudConfig,
-} from 'projects/doroteati/mia-layout/src/public-api';
+} from '@doroteati/mia-layout';
 import { AuctionService } from '../../services/auction.service';
-import { AuctionGroupService } from '../../services/auction_group.service';
 
 @Component({
   selector: 'app-videos',
+  standalone: true,
+  imports: [MiaPageCrudComponent],
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss'],
 })
@@ -17,11 +17,7 @@ export class VideosComponent implements OnInit {
   @ViewChild('pageComp') pageComp!: MiaPageCrudComponent;
 
   config = new MiaPageCrudConfig();
-
-  constructor(
-    protected auctionService: AuctionService,
-    protected groupService: AuctionGroupService
-  ) {}
+  protected readonly auctionService = inject(AuctionService);
 
   ngOnInit(): void {
     this.loadConfig();
@@ -38,11 +34,11 @@ export class VideosComponent implements OnInit {
   }
 
   onAction(action: { key: string; item: any }) {
-    if (action.key == 'add') {
+    if (action.key === 'add') {
       alert('Click ADD');
-    } else if (action.key == 'search') {
+    } else if (action.key === 'search') {
       this.onSearch(action.item);
-    } else if (action.key == 'remove') {
+    } else if (action.key === 'remove') {
       this.pageComp.onClickRemoveEs(action.item);
     }
     // El resto de acciones permanecen igual como antes
@@ -163,25 +159,13 @@ export class VideosComponent implements OnInit {
           { id: 5, title: 'Programada con visualización', color: 'accent' },
         ],
       },
-      {
-        key: 'group_id',
-        title: 'Subasta',
-        type: MiaFilterType.TYPE_OPTIONS_SERVICE,
-        extra: {
-          service: this.groupService,
-          field_display: 'title',
-          field_value: 'id',
-          query: new MiaQuery(),
-        },
-      },
     ];
   }
 
   loadConfig() {
     this.config.title = 'Activos';
     this.config.showColumnsButton = true;
-
-    this.config.buttons.push({ key: 'add', title: 'Agregar', icon: 'add' });
+    this.config.buttons = [{ key: 'add', title: 'Agregar', icon: 'add' }];
 
     this.loadTableConfig();
     this.loadFilterBox();

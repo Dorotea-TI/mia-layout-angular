@@ -1,10 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
-import {
-  MiaBaseCrudHttpService,
-  MiaCoreConfig,
-  MIA_CORE_PROVIDER,
-} from '@doroteati/mia-core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { MiaBaseCrudHttpService } from '@doroteati/mia-core';
 import { AuctionGroup } from '../entities/auction_group';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -14,11 +9,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class AuctionGroupService extends MiaBaseCrudHttpService<AuctionGroup> {
-  constructor(
-    @Inject(MIA_CORE_PROVIDER) protected override config: MiaCoreConfig,
-    protected override http: HttpClient
-  ) {
-    super(config, http);
+  constructor() {
+    super();
     this.basePathUrl = environment.baseUrl + 'auction/group';
   }
 

@@ -6,9 +6,5 @@ import { MiaItemList } from '../components/mia-list/mia-list.component';
     providedIn: 'root'
 })
 export class UserMenuService {
-
-    onClick = new Subject<MiaItemList>();
-
-    constructor(){ }
-
+    readonly onClick = new Subject<MiaItemList | undefined>();
 }

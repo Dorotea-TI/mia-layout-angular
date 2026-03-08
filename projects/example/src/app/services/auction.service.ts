@@ -1,11 +1,6 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Auction } from '../entities/auction';
-import {
-  MiaBaseCrudHttpService,
-  MiaCoreConfig,
-  MIA_CORE_PROVIDER,
-} from '@doroteati/mia-core';
-import { HttpClient } from '@angular/common/http';
+import { MiaBaseCrudHttpService } from '@doroteati/mia-core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -13,12 +8,9 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class AuctionService extends MiaBaseCrudHttpService<Auction> {
-  constructor(
-    @Inject(MIA_CORE_PROVIDER) protected override config: MiaCoreConfig,
-    protected override http: HttpClient
-  ) {
-    super(config, http);
-    this.basePathUrl = environment.baseUrl + 'admin/auction';
+  constructor() {
+    super();
+    this.basePathUrl = environment.baseUrl + 'auction';
   }
 
   changeStatus(auctionId: number, status: number): Observable<Auction> {

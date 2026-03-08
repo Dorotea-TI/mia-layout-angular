@@ -1,14 +1,30 @@
 <mat-action-list>
-    <ng-container *ngFor="let item of items">
-        <a *ngIf="item.route" mat-list-item [routerLink]="item.route" routerLinkActive="router-link-active" (click)="onClick(item)">
-            <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
-            <span *ngIf="isOpen"> {{ item.title }} </span>
-        </a>
-        <a *ngIf="item.action" mat-list-item (click)="onClick(item)">
-            <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
-            <span *ngIf="isOpen"> {{ item.title }} </span>
-        </a>
-    </ng-container>
+  @for (item of items ?? []; track item.title + '-' + (item.route ?? item.action ?? '')) {
+    @if (item.route) {
+      <a
+        mat-list-item
+        [routerLink]="item.route"
+        routerLinkActive="router-link-active"
+        (click)="onClick(item)"
+      >
+        @if (item.icon) {
+          <mat-icon>{{ item.icon }}</mat-icon>
+        }
+        @if (isOpen) {
+          <span>{{ item.title }}</span>
+        }
+      </a>
+    }
 
-    
+    @if (!item.route && item.action) {
+      <a mat-list-item (click)="onClick(item)">
+        @if (item.icon) {
+          <mat-icon>{{ item.icon }}</mat-icon>
+        }
+        @if (isOpen) {
+          <span>{{ item.title }}</span>
+        }
+      </a>
+    }
+  }
 </mat-action-list>

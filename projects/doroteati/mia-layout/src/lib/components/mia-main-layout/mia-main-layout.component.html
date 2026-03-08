@@ -11,8 +11,12 @@
       class="btn-menu"
       (click)="isSidebarOpen = !isSidebarOpen"
     >
-      <mat-icon *ngIf="!isSidebarOpen">menu</mat-icon>
-      <mat-icon *ngIf="isSidebarOpen">close</mat-icon>
+      @if (!isSidebarOpen) {
+        <mat-icon>menu</mat-icon>
+      }
+      @if (isSidebarOpen) {
+        <mat-icon>close</mat-icon>
+      }
     </button>
 
     <a [routerLink]="[config.mainRoute]" class="logo">
@@ -34,22 +38,23 @@
 
     <mat-divider style="margin-top: auto !important"></mat-divider>
 
-    <a
-      *ngIf="currentUser"
-      mat-button
-      [matMenuTriggerFor]="menu"
-      class="btn-user"
-      (click)="onClickItem()"
-    >
-      <div class="image">
-        <img
-          alt="avatar"
-          [src]="currentUser?.photo"
-          onerror="this.src='/assets/img/user-avatar-empty.svg';"
-        />
-      </div>
-      {{ currentUser.firstname }} {{ currentUser.lastname }}
-    </a>
+    @if (currentUser) {
+      <a
+        mat-button
+        [matMenuTriggerFor]="menu"
+        class="btn-user"
+        (click)="onClickItem()"
+      >
+        <div class="image">
+          <img
+            alt="avatar"
+            [src]="currentUser.photo"
+            onerror="this.src='/assets/img/user-avatar-empty.svg';"
+          />
+        </div>
+        {{ currentUser.firstname }} {{ currentUser.lastname }}
+      </a>
+    }
   </div>
 
   <div
@@ -60,7 +65,7 @@
   </div>
 </div>
 
-<mat-menu #menu>
+<mat-menu #menu="matMenu">
   <mia-list
     class="user-item-list"
     [items]="config.userMenu"

@@ -1,16 +1,20 @@
 {
   "name": "@doroteati/mia-layout",
-  "version": "14.1.0",
+  "version": "21.0.0",
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0",
-    "@angular/cdk": ">=14.0.0",
-    "@doroteati/mia-core": ">=14.0.2",
-    "@doroteati/mia-auth": ">=14.0.1",
-    "@doroteati/mia-table": ">=14.0.1",
-    "@doroteati/mia-form": ">=14.4.2"
+    "@angular/cdk": "^21.0.0",
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0",
+    "@angular/material": "^21.0.0",
+    "@angular/router": "^21.0.0",
+    "@doroteati/mia-auth": "^21.0.0",
+    "@doroteati/mia-core": "^21.0.0",
+    "@doroteati/mia-form": "^21.0.0",
+    "@doroteati/mia-loading": "^21.0.0",
+    "@doroteati/mia-table": "^21.0.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.8.1"
   }
 }
