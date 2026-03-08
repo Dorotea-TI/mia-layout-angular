@@ -25,12 +25,12 @@ import {
   truly,
 } from '@doroteati/mia-core';
 import {
+  MiaFilterBoxComponent,
   MiaFilterBoxConfig,
-  MiaFormModule,
   MiaFormModalComponent,
   MiaFormModalConfig,
 } from '@doroteati/mia-form';
-import { MiaTableComponent, MiaTableConfig, MiaTableModule } from '@doroteati/mia-table';
+import { MiaEditColumnsComponent, MiaTableComponent, MiaTableConfig } from '@doroteati/mia-table';
 
 export class MiaPageCrudConfig {
   title = '';
@@ -59,8 +59,9 @@ export class MiaPageCrudConfig {
     MatIconModule,
     MatInputModule,
     MatTooltipModule,
-    MiaFormModule,
-    MiaTableModule,
+    MiaFilterBoxComponent,
+    MiaTableComponent,
+    MiaEditColumnsComponent,
   ],
   templateUrl: './mia-page-crud.component.html',
   styleUrls: ['./mia-page-crud.component.scss'],
